@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 195950000}
   - component: {fileID: 195950002}
   - component: {fileID: 195950001}
+  - component: {fileID: 195950003}
   m_Layer: 0
   m_Name: luzLinterna
   m_TagString: Untagged
@@ -335,6 +336,21 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &195950003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195949999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a05d2643fd33548b4ea6f9c2e2d116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luzLinterna: {fileID: 195950002}
+  activLight: 0
+  linternaEnMano: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +970,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 923e90cc75691204eb671e26d3c31a6b, type: 2}
+  - {fileID: 2100000, guid: 439c7dd63c9900d4fae045d2a7de446c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

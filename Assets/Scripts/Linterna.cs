@@ -10,7 +10,7 @@ public class Linterna : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && linternaEnMano == true)
+        if (Input.GetKeyDown(KeyCode.F))
         {
             activLight = !activLight;
 
