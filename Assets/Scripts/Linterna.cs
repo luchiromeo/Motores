@@ -6,7 +6,7 @@ public class Linterna : MonoBehaviour
 {
     public Light luzLinterna;
     public bool activLight;
-    public bool linternaEnMano;
+    
 
     void Update()
     {
