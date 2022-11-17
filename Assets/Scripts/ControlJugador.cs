@@ -5,8 +5,9 @@ using UnityEngine;
 public class ControlJugador : MonoBehaviour
 {
     public float rapidezDesplazamiento = 10.0f;
-    private int hp;
+    private int hp =10;
     public bool Perdio = false;
+    public TMPro.TMP_Text textoGameOver;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -32,15 +33,17 @@ public class ControlJugador : MonoBehaviour
         {
             hp = 0;
 
+            textoGameOver.text = " GAME  OVER!!!! ";
             Perdio = true;
-           
+            
+
         }
     }
    
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision.gameObject.CompareTag("Enemigo"))
+        if (other.gameObject.CompareTag("Enemigo")==true)
         {
             recibirDaño();
         }
