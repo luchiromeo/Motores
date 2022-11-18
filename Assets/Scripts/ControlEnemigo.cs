@@ -16,5 +16,13 @@ public class ControlEnemigo : MonoBehaviour
         transform.LookAt(Jugador.transform);
         transform.Translate( rapidez * Vector3.forward * Time.deltaTime); 
     }
-    
+    private void OnColissionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Jugador") == true)
+        {
+          
+        }
+    }
+
+
 }
