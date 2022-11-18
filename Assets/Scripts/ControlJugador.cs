@@ -47,6 +47,10 @@ public class ControlJugador : MonoBehaviour
         {
             recibirDaño();
         }
+        if (other.gameObject.CompareTag("Coleccionable") == true)
+        {
+            other.gameObject.SetActive(false);
+        }
 
 
 
