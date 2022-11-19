@@ -7,9 +7,12 @@ public class ControlJugador : MonoBehaviour
     public float rapidezDesplazamiento = 10.0f;
     private int hp = 10;
     public bool Perdio = false;
+    public TMPro.TMP_Text textoGanaste;
     public TMPro.TMP_Text textoGameOver;
+    public TMPro.TMP_Text textoRecolectados;
     public GameObject Enemigo;
     public bool RelentizadorEnemigo;
+    int cont;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -26,6 +29,15 @@ public class ControlJugador : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
     }
+    public void setearTexto()
+    {
+        textoRecolectados.text = "Cantidad recolectados: " + cont.ToString();
+        if (cont >= 3)
+        {
+            textoGanaste.text = "Ganaste!!";
+        }
+    }
+
     public void recibirDaño()
     {
 
@@ -51,6 +63,8 @@ public class ControlJugador : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Coleccionable") == true)
         {
+            cont = cont + 1;
+            setearTexto();  
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("RelentizadorEnemigo") == true)
