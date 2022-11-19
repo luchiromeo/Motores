@@ -22,7 +22,10 @@ public class ControlEnemigo : MonoBehaviour
         {
           
         }
+       
+       
     }
-
+   
+    
 
 }

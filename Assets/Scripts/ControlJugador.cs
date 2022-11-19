@@ -5,9 +5,11 @@ using UnityEngine;
 public class ControlJugador : MonoBehaviour
 {
     public float rapidezDesplazamiento = 10.0f;
-    private int hp =10;
+    private int hp = 10;
     public bool Perdio = false;
     public TMPro.TMP_Text textoGameOver;
+    public GameObject Enemigo;
+    public bool RelentizadorEnemigo;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,7 +43,7 @@ public class ControlJugador : MonoBehaviour
     }
    
 
-    private void OnCollisionEnter(Collision other)
+    public void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemigo")==true)
         {
@@ -51,8 +53,10 @@ public class ControlJugador : MonoBehaviour
         {
             other.gameObject.SetActive(false);
         }
-
-
+        if (other.gameObject.CompareTag("RelentizadorEnemigo") == true)
+        {
+            other.gameObject.SetActive(false);
+        }
 
     }
 }
