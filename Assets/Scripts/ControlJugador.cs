@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ControlJugador : MonoBehaviour
 {
-    public float rapidezDesplazamiento = 10.0f;
+    public float rapidez;
     private int hp = 10;
     public bool Perdio = false;
     public TMPro.TMP_Text textoGanaste;
     public TMPro.TMP_Text textoGameOver;
     public TMPro.TMP_Text textoRecolectados;
     public GameObject Enemigo;
-    public bool RelentizadorEnemigo;
+    public bool PowerUp;
     int cont;
     void Start()
     {
@@ -19,8 +19,8 @@ public class ControlJugador : MonoBehaviour
     }
     void Update()
     {
-        float movimientoAdelanteAtras = Input.GetAxis("Vertical") * rapidezDesplazamiento;
-        float movimientoCostados = Input.GetAxis("Horizontal") * rapidezDesplazamiento;
+        float movimientoAdelanteAtras = Input.GetAxis("Vertical") * rapidez;
+        float movimientoCostados = Input.GetAxis("Horizontal") * rapidez;
         movimientoAdelanteAtras *= Time.deltaTime;
         movimientoCostados *= Time.deltaTime;
         transform.Translate(movimientoCostados, 0, movimientoAdelanteAtras);
@@ -67,10 +67,21 @@ public class ControlJugador : MonoBehaviour
             setearTexto();  
             other.gameObject.SetActive(false);
         }
-        if (other.gameObject.CompareTag("RelentizadorEnemigo") == true)
+        if (other.gameObject.CompareTag("AumentoDeRapidez") == true)
         {
+            PowerUp = true;
+            rapidez+=2;
             other.gameObject.SetActive(false);
+            StartCoroutine(Temporizador());
         }
 
     }
+    IEnumerator Temporizador()
+    {
+        yield return new WaitForSeconds(8);
+        PowerUp = false;
+        rapidez -= 2;
+    }
+
+    
 }

@@ -9,6 +9,7 @@ TagManager:
   - Coleccionable
   - RelenntizadorEnemigo
   - RelentizadorEnemigo
+  - AumentoDeRapidez
   layers:
   - Default
   - TransparentFX
