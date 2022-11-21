@@ -10,6 +10,7 @@ public class ControlJugador : MonoBehaviour
     public TMPro.TMP_Text textoGanaste;
     public TMPro.TMP_Text textoGameOver;
     public TMPro.TMP_Text textoRecolectados;
+    public TMPro.TMP_Text TextoReincio;
     public GameObject Enemigo;
     public bool PowerUp;
     int cont;
@@ -48,6 +49,7 @@ public class ControlJugador : MonoBehaviour
             hp = 0;
 
             textoGameOver.text = " GAME  OVER!!!! ";
+            TextoReincio.text = "Presione R para reintentar";
             Perdio = true;
             
 
