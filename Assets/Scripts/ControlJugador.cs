@@ -61,6 +61,7 @@ public class ControlJugador : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemigo")==true)
         {
+            GestorDeAudio.instancia.ReproducirSonido("Grito");
             recibirDaño();
         }
         if (other.gameObject.CompareTag("Coleccionable") == true)
