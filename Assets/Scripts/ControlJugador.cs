@@ -39,6 +39,7 @@ public class ControlJugador : MonoBehaviour
         if (cont >= 3)
         {
             textoGanaste.text = "Ganaste!!";
+            TextoReincio.text = "Presione R para reintentar";
         }
     }
 
