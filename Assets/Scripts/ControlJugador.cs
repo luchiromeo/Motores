@@ -11,9 +11,12 @@ public class ControlJugador : MonoBehaviour
     public TMPro.TMP_Text textoGameOver;
     public TMPro.TMP_Text textoRecolectados;
     public TMPro.TMP_Text TextoReincio;
-    public GameObject Enemigo;
     public bool PowerUp;
     int cont;
+    public GameObject Enemigo;
+    [Header("Muerto")]
+    public GameObject Muerto;
+   
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,7 +50,8 @@ public class ControlJugador : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
-
+            Instantiate(Muerto);
+            
             textoGameOver.text = " GAME  OVER!!!! ";
             TextoReincio.text = "Presione R para reintentar";
             Perdio = true;
