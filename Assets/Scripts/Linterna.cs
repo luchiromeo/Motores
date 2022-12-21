@@ -8,14 +8,16 @@ public class Linterna : MonoBehaviour
     public Light luzLinterna;
     public bool activLight;
     public float cantBateria=100;
-    public float PerdidaBat = 0.5f;
-    public Text porcentaje;
+    public float PerdidaBat = 1;
+    
+    public TMPro.TMP_Text porcentaje;
 
     void Update()
     {
         
         cantBateria= Mathf.Clamp(cantBateria,0,100);
-        int ValorBat = (int)cantBateria;
+        int ValorBat;
+        ValorBat=(int)cantBateria;
         porcentaje.text = ValorBat.ToString() + "%";
         
         if (Input.GetKeyDown(KeyCode.F))

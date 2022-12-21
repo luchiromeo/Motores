@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Bateria : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject linterna;
+    public float bateria;
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.tag == "Jugador")
+        {
+            linterna.GetComponent<Linterna>().cantBateria += bateria;
+         Destroy(gameObject);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
