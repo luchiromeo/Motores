@@ -10,6 +10,7 @@ public class ControlJugador : MonoBehaviour
     public TMPro.TMP_Text textoGameOver;
     public TMPro.TMP_Text textoRecolectados;
     public TMPro.TMP_Text TextoReincio;
+    public TMPro.TMP_Text Energia;
     public bool PowerUp;
     int cont;
     public GameObject Enemigo;
@@ -36,6 +37,9 @@ public class ControlJugador : MonoBehaviour
         movimientoAdelanteAtras *= Time.deltaTime;
         movimientoCostados *= Time.deltaTime;
         transform.Translate(movimientoCostados, 0, movimientoAdelanteAtras);
+        int valorEnergia;
+        valorEnergia =(int)energiaActual;
+        Energia.text = "Energia:"+ valorEnergia.ToString();
         if (Input.GetKeyDown("escape"))
         {
             Cursor.lockState = CursorLockMode.None;
