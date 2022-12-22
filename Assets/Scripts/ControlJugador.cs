@@ -68,17 +68,7 @@ public class ControlJugador : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "RelentizadorEnemigo")
-        {
-            Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo -= 2;
-            
-            StartCoroutine(RelentizadorTemp());
-            
-        }
-
-    }
+   
 
     public void OnCollisionEnter(Collision other)
     {
@@ -108,11 +98,6 @@ public class ControlJugador : MonoBehaviour
         PowerUp = false;
         rapidez -= 2;
     }
-    IEnumerator RelentizadorTemp()
-    {
-        yield return new WaitForSeconds(10);
-        Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo += 2;
-    }
-
+   
     
 }
