@@ -72,7 +72,7 @@ public class ControlJugador : MonoBehaviour
         if (other.tag == "RelentizadorEnemigo")
         {
             Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo -= 2;
-           
+            StartCoroutine(Relentizador());
         }
 
     }
@@ -104,6 +104,11 @@ public class ControlJugador : MonoBehaviour
         yield return new WaitForSeconds(8);
         PowerUp = false;
         rapidez -= 2;
+    }
+    IEnumerator Relentizador()
+    {
+        yield return new WaitForSeconds(10);
+        rapidez += 2;
     }
 
     
