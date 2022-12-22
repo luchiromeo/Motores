@@ -69,10 +69,10 @@ public class ControlJugador : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Jugador")
+        if (other.tag == "RelentizadorEnemigo")
         {
             Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo -= 2;
-            Destroy(gameObject);
+           
         }
 
     }
