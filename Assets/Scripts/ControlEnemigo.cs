@@ -5,7 +5,7 @@ using UnityEngine;
 public class ControlEnemigo : MonoBehaviour
 {
     private GameObject Jugador;
-    public int rapidez;
+    public int rapidezEnemigo=10;
     void Start()
     {
         Jugador = GameObject.Find("Jugador");
@@ -14,17 +14,9 @@ public class ControlEnemigo : MonoBehaviour
     void Update()
     {
         transform.LookAt(Jugador.transform);
-        transform.Translate( rapidez * Vector3.forward * Time.deltaTime); 
+        transform.Translate( rapidezEnemigo * Vector3.forward * Time.deltaTime); 
     }
-    private void OnColissionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Jugador") == true)
-        {
-          
-        }
-       
-       
-    }
+   
    
     
 

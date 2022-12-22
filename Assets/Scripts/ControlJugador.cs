@@ -32,6 +32,12 @@ public class ControlJugador : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            rapidez+=2;
+
+        }
     }
     public void setearTexto()
     {
@@ -60,7 +66,16 @@ public class ControlJugador : MonoBehaviour
 
         }
     }
-   
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Jugador")
+        {
+            Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo -= 2;
+            Destroy(gameObject);
+        }
+
+    }
 
     public void OnCollisionEnter(Collision other)
     {
