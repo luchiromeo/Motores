@@ -17,6 +17,7 @@ public class ControlJugador : MonoBehaviour
     [Header("Muerto")]
     public GameObject Muerto;
    
+   
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -72,7 +73,9 @@ public class ControlJugador : MonoBehaviour
         if (other.tag == "RelentizadorEnemigo")
         {
             Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo -= 2;
-            StartCoroutine(Relentizador());
+            
+            StartCoroutine(RelentizadorTemp());
+            
         }
 
     }
@@ -105,10 +108,10 @@ public class ControlJugador : MonoBehaviour
         PowerUp = false;
         rapidez -= 2;
     }
-    IEnumerator Relentizador()
+    IEnumerator RelentizadorTemp()
     {
         yield return new WaitForSeconds(10);
-        rapidez += 2;
+        Enemigo.GetComponent<ControlEnemigo>().rapidezEnemigo += 2;
     }
 
     
