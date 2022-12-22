@@ -16,11 +16,13 @@ public class ControlJugador : MonoBehaviour
     public GameObject Enemigo;
     [Header("Muerto")]
     public GameObject Muerto;
+    public GameObject ControlNumeros;
    
    
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+       Cursor.lockState = CursorLockMode.Locked;
+        
     }
     void Update()
     {
@@ -39,6 +41,12 @@ public class ControlJugador : MonoBehaviour
             rapidez+=2;
 
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ControlNumeros.SetActive(!ControlNumeros.activeInHierarchy);
+        }
+
+
     }
     public void setearTexto()
     {

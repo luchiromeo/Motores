@@ -18,12 +18,15 @@ public class KeyPad : MonoBehaviour
         if (ANS.text == Answer)
         {
             ANS.text = "OPEN";
+            StartCoroutine("BorrarTexto");
+
             Door.SetBool("open",true);
             StartCoroutine("StopDoor");
         }
         else
         {
             ANS.text = "Incorrecto";
+            StartCoroutine("BorrarTexto");
         }
     }
     IEnumerator StopDoor()
@@ -32,4 +35,10 @@ public class KeyPad : MonoBehaviour
         Door.SetBool("open",false);
         Door.enabled = false;
     }
+    IEnumerator BorrarTexto()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ANS.text = "";
+    }
+
 }
