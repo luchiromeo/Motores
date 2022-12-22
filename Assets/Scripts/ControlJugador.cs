@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ControlJugador : MonoBehaviour
 {
-    public float rapidez;
     private int hp = 10;
     public bool Perdio = false;
     public TMPro.TMP_Text textoGanaste;
@@ -17,17 +16,23 @@ public class ControlJugador : MonoBehaviour
     [Header("Muerto")]
     public GameObject Muerto;
     public GameObject ControlNumeros;
-   
-   
+
+    public float velocidadActual;
+    public float velocidadCaminando = 10;
+    public float velocidadCorriendo = 15;
+    public float energiaActual = 5;
+    public bool agotado = false;
+
     void Start()
     {
-       Cursor.lockState = CursorLockMode.Locked;
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        velocidadActual = velocidadCaminando;
+
     }
     void Update()
     {
-        float movimientoAdelanteAtras = Input.GetAxis("Vertical") * rapidez;
-        float movimientoCostados = Input.GetAxis("Horizontal") * rapidez;
+        float movimientoAdelanteAtras = Input.GetAxis("Vertical") * velocidadActual;
+        float movimientoCostados = Input.GetAxis("Horizontal") * velocidadActual;
         movimientoAdelanteAtras *= Time.deltaTime;
         movimientoCostados *= Time.deltaTime;
         transform.Translate(movimientoCostados, 0, movimientoAdelanteAtras);
@@ -36,11 +41,27 @@ public class ControlJugador : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && energiaActual > 0 && !agotado)
         {
-            rapidez+=2;
-
+            velocidadActual = velocidadCorriendo;
+            energiaActual -= Time.deltaTime;       
         }
+        else
+        {
+            if (energiaActual <= 0)
+                agotado = true;
+
+            velocidadActual = velocidadCaminando;
+            if (energiaActual < 10)
+            {
+                energiaActual += Time.deltaTime; 
+            }
+            else
+            {
+                agotado = false;
+            }       
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             ControlNumeros.SetActive(!ControlNumeros.activeInHierarchy);
@@ -67,20 +88,16 @@ public class ControlJugador : MonoBehaviour
         {
             hp = 0;
             Instantiate(Muerto);
-            
+
             textoGameOver.text = " GAME  OVER!!!! ";
             TextoReincio.text = "Presione R para reintentar";
             Perdio = true;
-            
-
         }
     }
 
-   
-
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemigo")==true)
+        if (other.gameObject.CompareTag("Enemigo") == true)
         {
             GestorDeAudio.instancia.ReproducirSonido("Grito");
             recibirDaño();
@@ -88,13 +105,14 @@ public class ControlJugador : MonoBehaviour
         if (other.gameObject.CompareTag("Coleccionable") == true)
         {
             cont = cont + 1;
-            setearTexto();  
+            setearTexto();
             other.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("AumentoDeRapidez") == true)
         {
             PowerUp = true;
-            rapidez+=2;
+            velocidadCorriendo += 5;
+            velocidadCaminando += 5;
             other.gameObject.SetActive(false);
             StartCoroutine(Temporizador());
         }
@@ -104,8 +122,12 @@ public class ControlJugador : MonoBehaviour
     {
         yield return new WaitForSeconds(8);
         PowerUp = false;
-        rapidez -= 2;
+        velocidadCorriendo -= 5;
+        velocidadCaminando -= 5;
     }
-   
-    
+    IEnumerator EnergiaTemp()
+    {
+        yield return new WaitForSeconds(8);
+
+    }
 }
